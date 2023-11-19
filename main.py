@@ -1,22 +1,43 @@
 from PyQt6 import QtWidgets
 import sys
+import my_window
+
 
 class MyWidget(QtWidgets.QWidget):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
-        self.setWindowTitle("Моя программа")
-        self.resize(300, 70)
+        #         self.setWindowTitle("Моя программа")
+        #         self.resize(300, 70)
+        #
+        #         label = QtWidgets.QLabel("Поиск по классификатору МКБ:")
+        #         btnQuit = QtWidgets.QPushButton("Закрыть")
+        #         btnSearch = QtWidgets.QPushButton("Найти")
+        #
+        #         line = QLineEdit()
+        #
+        #         vbox = QtWidgets.QVBoxLayout()
+        #         vbox.addWidget(label)
+        #         vbox.addWidget(btnSearch)
+        #         vbox.addWidget(line)
+        #         vbox.addWidget(btnQuit)
+        #         vbox.addWidget(line)
+        #
+        #         self.setLayout(vbox)
+        #
+        #         btnQuit.clicked.connect(app.quit)
+        #         @btnSearch.clicked.connect
+        #         def click():
+        #             self.search()
+        #
+        #     def search(self):
+        #         print("Надо что-то найти...")
 
-        label = QtWidgets.QLabel("<center>Дратути</center>")
-        btnQuit = QtWidgets.QPushButton("Закрыть")
+        self.ui =   my_window.Ui_Form()
+        self.ui.setupUi(self)
 
-        vbox = QtWidgets.QVBoxLayout()
-        vbox.addWidget(label)
-        vbox.addWidget(btnQuit)
+        # connect signals
+        #self.ui.some_button.connect(self.on_button)
 
-        self.setLayout(vbox)
-
-        btnQuit.clicked.connect(app.quit)
 
 app = QtWidgets.QApplication(sys.argv)
 
