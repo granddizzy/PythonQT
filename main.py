@@ -32,12 +32,20 @@ class MyWidget(QtWidgets.QWidget):
         #     def search(self):
         #         print("Надо что-то найти...")
 
-        self.ui =   my_window.Ui_Form()
+        self.ui = my_window.Ui_Form()
         self.ui.setupUi(self)
 
         # connect signals
-        #self.ui.some_button.connect(self.on_button)
+        self.ui.pushButton_2.clicked.connect(self.close)
+        self.ui.pushButton.clicked.connect(self.search)
+        # def click():
+        #     self.search()
 
+    def search(self):
+        query = self.ui.lineEdit.text()
+        if (query):
+            #rint("Надо найти: " + self.ui.lineEdit.text())
+            self.ui.textBrowser.setText("Надо найти: " + self.ui.lineEdit.text())
 
 app = QtWidgets.QApplication(sys.argv)
 
