@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'd:\untitled.ui'
+# Form implementation generated from reading ui file 'd:\my_window.ui'
 #
 # Created by: PyQt6 UI code generator 6.6.0
 #
@@ -34,7 +34,6 @@ class Ui_Form(object):
         self.treeWidget = QtWidgets.QTreeWidget(parent=Form)
         self.treeWidget.setMouseTracking(False)
         self.treeWidget.setObjectName("treeWidget")
-        self.treeWidget.headerItem().setText(0, "1")
         self.horizontalLayout_2.addWidget(self.treeWidget)
         self.textBrowser = QtWidgets.QTextBrowser(parent=Form)
         self.textBrowser.setObjectName("textBrowser")
@@ -50,7 +49,9 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Классификатор"))
         self.label.setText(_translate("Form", "Поиск"))
         self.pushButton.setText(_translate("Form", "Найти"))
+        self.treeWidget.headerItem().setText(0, _translate("Form", "Код"))
+        self.treeWidget.headerItem().setText(1, _translate("Form", "Наименование"))
         self.pushButton_2.setText(_translate("Form", "Закрыть"))
