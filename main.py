@@ -65,16 +65,39 @@ class MyWidget(QtWidgets.QWidget):
         self.ui.pushButton_2.clicked.connect(self.close)
         self.ui.pushButton.clicked.connect(self.search)
 
-        self.ui.treeWidget.currentItemChanged.connect(self.show_decription)
+        self.ui.treeWidget.currentItemChanged.connect(self.show_description)
         # def click():
         #     self.search()
 
     def search(self):
         query = self.ui.lineEdit.text()
         if query:
-            self.ui.textBrowser.setText("Надо найти: " + self.ui.lineEdit.text())
+            model = self.ui.treeWidget.model()
+            root_index = self.ui.treeWidget.rootIndex()
+            row_count = model.rowCount()
+            item = self.find_mkb_item(self.ui.lineEdit.text().upper(), model, root_index, row_count)
+            if item:
+                self.ui.treeWidget.setCurrentItem(item)
 
-    def show_decription(self, item):
+    def find_mkb_item(self, code: str, model: QtWidgets.QTreeWidget.model,
+                      root_index: int, row_count) -> QtWidgets.QTreeWidgetItem | None:
+
+        for i in range(row_count):
+            index = model.index(i, 0, root_index)
+            item = self.ui.treeWidget.itemFromIndex(index)
+
+            if get_mkb_code(item) == code:
+                return item
+
+            row_count_child = item.childCount()
+            if row_count_child > 0:
+                item = self.find_mkb_item(code, model, index, row_count_child)
+                if item and get_mkb_code(item) == code:
+                    return item
+
+        return None
+
+    def show_description(self, item):
         self.ui.textBrowser.setText(get_mkb_code(item) + " " + item.text(1))
 
     def fill_tree(self):
